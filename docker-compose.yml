@@ -1,4 +1,6 @@
-services: 
+
+services:
+  # API Laravel
   app:
     build: .
     ports:
@@ -7,7 +9,7 @@ services:
       - ./:/var/www/html
     user: "1000:1000"
     depends_on:
-    - mysql
+      - mysql
 
   mysql:
     image: mysql:8.4
@@ -21,6 +23,7 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
 
+  # Interface web para visualizar o banco
   adminer:
     image: adminer
     ports:
@@ -28,5 +31,6 @@ services:
     depends_on:
       - mysql
 
-volumes: 
+volumes:
+  # Dados persistem mesmo se o container for removido
   mysql-data:
